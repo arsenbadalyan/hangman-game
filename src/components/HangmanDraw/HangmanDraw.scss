@@ -1,0 +1,133 @@
+$defaultWeight: 5px;
+$baseWidth: 15%;
+$stickHeight: 250px;
+$rightStick: 15%;
+$bottomStickHeight: 50px;
+$headSize: 50px;
+$bodyHeight: 70px;
+$baseColor: black;
+$loseColor: red;
+@function changeColor() {
+  $baseColor: $loseColor;
+}
+%hands {
+  position: absolute;
+  top: calc($headSize + $bottomStickHeight + ($bodyHeight/4));
+  left: calc(50% + $rightStick);
+  width: $defaultWeight;
+  height: calc($bodyHeight/2);
+  transform-origin: top left;
+  background: $baseColor;
+  border-radius: 0 0 20px 20px;
+}
+%legs {
+  position: absolute;
+  top: calc($headSize + $bottomStickHeight + $bodyHeight - $defaultWeight);
+  left: calc(50% + $rightStick);
+  width: $defaultWeight;
+  height: calc($bodyHeight/2);
+  transform-origin: top left;
+  background: $baseColor;
+  border-radius: 0 0 20px 20px;
+}
+
+.HangmanDraw {
+  position: relative;
+  margin: 50px 0;
+  &_Bottom {
+    width: $baseWidth;
+    height: $defaultWeight;
+    background: $baseColor;
+    margin: auto;
+  }
+  &_Top {
+    width: $defaultWeight;
+    height: $stickHeight;
+    background: $baseColor;
+    margin: auto;
+  }
+  &_Right {
+    width: $rightStick;
+    height: $defaultWeight;
+    background: $baseColor;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+  }
+  &_BottomStick {
+    width: $defaultWeight;
+    height: $bottomStickHeight;
+    background: $baseColor;
+    position: absolute;
+    left: calc(50% + $rightStick);
+  }
+  &_Head {
+    width: $headSize;
+    height: $headSize;
+    border: $defaultWeight solid $baseColor;
+    border-radius: 100%;
+    position: absolute;
+    top: $bottomStickHeight;
+    left: calc(50% + $rightStick);
+    transform: translateX(calc(-50% + calc($defaultWeight/2)));
+  }
+  &_Body {
+    position: absolute;
+    top: calc($headSize + $bottomStickHeight);
+    left: calc(50% + $rightStick);
+    width: $defaultWeight;
+    height: $bodyHeight;
+    background: $baseColor;
+  }
+  &_LHand {
+    @extend %hands;
+    transform: rotate(45deg);
+  }
+  &_RHand {
+    @extend %hands;
+    transform: rotate(-45deg);
+    transform-origin: top right;
+  }
+  &_LLeg {
+    @extend %legs;
+    transform: rotate(45deg);
+  }
+  &_RLeg {
+    @extend %legs;
+    transform: rotate(-45deg);
+    transform-origin: top right;
+  }
+}
+
+.HangmanDrawLose {
+  .HangmanDraw_Bottom {
+    background: $loseColor;
+  }
+  .HangmanDraw_Top {
+    background: $loseColor;
+  }
+  .HangmanDraw_Right {
+    background: $loseColor;
+  }
+  .HangmanDraw_BottomStick {
+    background: $loseColor;
+  }
+  .HangmanDraw_Head {
+    border-color: $loseColor;
+  }
+  .HangmanDraw_Body {
+    background: $loseColor;
+  }
+  .HangmanDraw_LHand {
+    background: $loseColor;
+  }
+  .HangmanDraw_RHand {
+    background: $loseColor;
+  }
+  .HangmanDraw_LLeg {
+    background: $loseColor;
+  }
+  .HangmanDraw_RLeg {
+    background: $loseColor;
+  }
+}

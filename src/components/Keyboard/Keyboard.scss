@@ -1,0 +1,29 @@
+.Keyboard {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  grid-template-rows: auto;
+  gap: 0.5em;
+}
+.kLetter {
+  border: 2px solid black;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 2rem;
+  font-family: monospace;
+  text-transform: uppercase;
+  &:hover:not(.kLetterDisabled),
+  &:focus:not(.kLetterDisabled) {
+    background: gold;
+    border-color: gold;
+    box-shadow: 0 0 10px 0 black;
+  }
+}
+.kLetterDisabled {
+  background: lightgrey;
+  border: none;
+}

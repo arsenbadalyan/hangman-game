@@ -1,0 +1,16 @@
+.GuessWord {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 3rem;
+  div {
+    border-bottom: 5px solid black;
+    text-transform: uppercase;
+    p {
+      text-align: center;
+      font-family: monospace;
+    }
+  }
+}
