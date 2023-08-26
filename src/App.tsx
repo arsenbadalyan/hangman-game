@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './App.scss';
 import { GameStatus } from './components/GameStatus/GameStatus';

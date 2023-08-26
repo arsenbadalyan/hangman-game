@@ -1,4 +1,7 @@
-export function guessWordReducer(state: any = {}, action: any) {
+import { guessWordInitialState } from "../app/store";
+
+export function guessWordReducer(state: any = {}, action: any, allState: any = {}) {
+  const { lang } = state;
   if (action.type === 'change-try') {
     return {
       ...state,
@@ -34,6 +37,17 @@ export function guessWordReducer(state: any = {}, action: any) {
       ...state,
       list: newList,
     };
+  } else if (action.type === 'change-language') {
+    return {
+      ...state,
+      lang: action.payload.lang
+    }
+  } else if (action.type === 'reset-state') {
+    return {
+      ...guessWordInitialState,
+      list: [],
+      lang
+    }
   }
   return state;
 }
@@ -51,9 +65,16 @@ export const guessGetter = {
   getList: ({ guessWord }: any) => {
     return guessWord.list;
   },
+  getLang: ({ guessWord }: any) => {
+    return guessWord.lang;
+  },
+  getChances: ({ guessWord }: any) => {
+    return guessWord.chances;
+  },
   all: ({ guessWord }: any) => {
     return guessWord;
   },
+  getMainStatus: ({ guessWord }: any) => guessWord.isOver
 };
 
 export const guessSetter = {
@@ -89,6 +110,19 @@ export const guessSetter = {
       },
     };
   },
+  setLang: (lang: string) => {
+    return {
+      type: 'change-language',
+      payload: {
+        lang
+      }
+    }
+  },
+  resetState: () => {
+    return {
+      type: 'reset-state'
+    }
+  }
 };
 
 export function getRandomWord() {}

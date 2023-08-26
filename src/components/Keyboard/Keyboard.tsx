@@ -1,80 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { guessGetter, guessSetter } from '../../features/guessWordSlice';
+
+// styling
 import './Keyboard.scss';
-// const alphabet = [
-//   'A',
-//   'B',
-//   'C',
-//   'D',
-//   'E',
-//   'F',
-//   'G',
-//   'H',
-//   'I',
-//   'J',
-//   'K',
-//   'L',
-//   'M',
-//   'N',
-//   'O',
-//   'P',
-//   'Q',
-//   'R',
-//   'S',
-//   'T',
-//   'U',
-//   'V',
-//   'W',
-//   'X',
-//   'Y',
-//   'Z',
-// ];
-const alphabet_hy = [
-  'ա',
-  'բ',
-  'գ',
-  'դ',
-  'ե',
-  'զ',
-  'է',
-  'ը',
-  'թ',
-  'ժ',
-  'ի',
-  'լ',
-  'խ',
-  'ծ',
-  'կ',
-  'հ',
-  'ձ',
-  'ղ',
-  'ճ',
-  'մ',
-  'յ',
-  'ն',
-  'շ',
-  'ո',
-  'չ',
-  'պ',
-  'ջ',
-  'ռ',
-  'ս',
-  'վ',
-  'տ',
-  'ր',
-  'ց',
-  'ու',
-  'փ',
-  'ք',
-  'և',
-  'օ',
-  'ֆ',
-];
+
+// alphabets
+import alphabets from './constants/alphabets';
+
 export function Keyboard() {
+
   const guessWord = useSelector(guessGetter.all);
-  // console.log(guessWord);
+  const lang = useSelector(guessGetter.getLang);
   const dispatch = useDispatch();
   const handleClick = (letter: string) => {
+    letter = letter.toLowerCase();
     dispatch(guessSetter.setList(letter));
     if (guessWord.word.includes(letter)) {
       const numOfChars = guessWord.word
@@ -85,9 +24,11 @@ export function Keyboard() {
       dispatch(guessSetter.setFail(guessWord.fail + 1));
     }
   };
+
   return (
     <div className="Keyboard">
-      {alphabet_hy.map((letter) => {
+      {alphabets[lang].map((letter) => {
+        letter = letter.toLowerCase();
         let classList = ['kLetter'];
         if (guessWord.list.includes(letter)) classList.push('kLetterDisabled');
         return (

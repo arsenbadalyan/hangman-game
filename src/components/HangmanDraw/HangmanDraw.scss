@@ -1,6 +1,6 @@
 $defaultWeight: 5px;
 $baseWidth: 15%;
-$stickHeight: 250px;
+$stickHeight: 270px;
 $rightStick: 15%;
 $bottomStickHeight: 50px;
 $headSize: 50px;
@@ -10,6 +10,14 @@ $loseColor: red;
 @function changeColor() {
   $baseColor: $loseColor;
 }
+
+@mixin absolute-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 %hands {
   position: absolute;
   top: calc($headSize + $bottomStickHeight + ($bodyHeight/4));
@@ -34,17 +42,21 @@ $loseColor: red;
 .HangmanDraw {
   position: relative;
   margin: 50px 0;
+  min-height: $stickHeight;
   &_Bottom {
     width: $baseWidth;
     height: $defaultWeight;
     background: $baseColor;
-    margin: auto;
+    @include absolute-center;
+    top: 100%;
   }
   &_Top {
     width: $defaultWeight;
     height: $stickHeight;
     background: $baseColor;
-    margin: auto;
+    @include absolute-center;
+    top: 100%;
+    transform: translateY(-100%);
   }
   &_Right {
     width: $rightStick;

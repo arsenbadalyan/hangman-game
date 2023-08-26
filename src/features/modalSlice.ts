@@ -1,25 +1,30 @@
-export const ModalReducer = (state: any = {}, action: any) => {
+import { TRANSLATIONS } from "../constants";
+
+export const ModalReducer = (state: any = {}, action: any, allState: any) => {
+
+  const { lang } = allState.guessWord;
+
   const defaultList = {
     win: {
       show: true,
-      text: 'Yes you win!!',
+      text: TRANSLATIONS.message.youWin[lang],
       actions: [
         {
-          value: 'Restart',
+          value: TRANSLATIONS.btns.restart[lang],
           action: 'restart',
         },
         {
-          value: 'Cancel',
+          value: TRANSLATIONS.btns.cancel[lang],
           action: 'cancel',
         },
       ],
     },
     fail: {
       show: true,
-      text: 'Ohhh you lose ... !Game over!',
+      text: TRANSLATIONS.message.youLose[lang],
       actions: [
         {
-          value: 'Restart',
+          value: TRANSLATIONS.btns.restart[lang],
           action: 'restart',
         },
       ],

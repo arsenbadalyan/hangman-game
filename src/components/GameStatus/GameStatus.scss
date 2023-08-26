@@ -1,0 +1,29 @@
+.GameStatus {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+
+    &-flags {
+        display: flex;
+        gap: 5px;
+        img {
+            height: 32px;
+            cursor: pointer;
+            transition: all 500ms;
+            &:hover {
+                opacity: 1;
+                filter: drop-shadow(2px 2px 10px #000);
+            }
+        }
+        .disabled {
+            opacity: 0.5;
+        }
+    }
+
+    &-tries {
+        font-size: 1.2em;
+        font-weight: 700;
+        cursor: default;
+    }
+}

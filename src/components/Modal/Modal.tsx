@@ -1,16 +1,25 @@
+// redux state
 import { useDispatch } from 'react-redux';
 import { setAllModal } from '../../features/modalSlice';
+import { guessSetter } from '../../features/guessWordSlice';
+
+// styling
 import './Modal.scss';
+
 export function Modal({ settings }: any) {
-  const modalDispatch = useDispatch();
+
+  const dispatch = useDispatch();
+
   if (!settings.show) return null;
+
   function handleAction(action: string) {
     if (action === 'restart') {
-      window.location.reload();
+      dispatch(guessSetter.resetState());
     } else if (action === 'cancel') {
-      modalDispatch(setAllModal.close());
+      dispatch(setAllModal.close());
     }
   }
+
   return (
     <div className="Modal">
       <div className="Modal_window">
